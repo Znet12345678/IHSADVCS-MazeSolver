@@ -43,13 +43,13 @@ public class Maze{
 
 		}
 		for(int i = 0; i < ret.size();i++)
-			if(ret.get(i).getType() != ret.get(0).TYPE_EMPTY)
+			if(ret.get(i).getType() == ret.get(i).TYPE_WALL)
 				ret.remove(ret.get(i));
 		return ret;
 	}
 	Square getStart(){
 		for(Square s : b){
-			if(s.getType() == s.TYPE_START)
+			if(s.getType() == 2)
 				return s;
 		}
 		return null;
