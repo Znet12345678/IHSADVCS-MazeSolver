@@ -1,5 +1,5 @@
 public class Square{
-	public static final int TYPE_EMPTY = 0, TYPE_WALL = 1,TYPE_START = 2,TYPE_EMD = 3;
+	public static final int TYPE_EMPTY = 0, TYPE_WALL = 1,TYPE_START = 2,TYPE_END = 3;
 	public static final char WORK_LIST = 'o' , ALREADY_EXPLORED = '.', EXIT = 'x';
 	private int row;
 	private int col;

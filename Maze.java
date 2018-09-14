@@ -9,6 +9,7 @@ public class Maze{
 	}
 	public boolean loadMaze(String filename){
 		try{
+			b = new ArrayList<Square>();
 			Scanner s = new Scanner(new File(filename));
 			this.x = s.nextInt();
 			this.y = s.nextInt();
@@ -26,25 +27,26 @@ public class Maze{
 	List<Square> getNeighbors(Square s){
 		ArrayList <Square>ret = new ArrayList<Square>();
 		try{
-			ret.add(b.get(x*(s.getRow()-1+s.getCol())));
+			if(s.getType() != 1)
+				ret.add(b.get(x*(s.getRow()-1)+s.getCol()));
 		}catch(Exception e){
 
 		}try{
-			ret.add(b.get(x*s.getRow()+s.getCol()-1));
+			if(s.getCol() != 0 && s.getType() != 1)
+				ret.add(b.get(x*s.getRow()+s.getCol()-1));
 		}catch(Exception e){
 
 		}try{
-			ret.add(b.get(x*(s.getRow()+1)+s.getCol()));
+			if(s.getType() != 1)
+				ret.add(b.get(x*(s.getRow()+1)+s.getCol()));
 		}catch(Exception e){
 
 		}try{
-			ret.add(b.get(x*s.getRow()+s.getCol()+1));
+			if(s.getCol() != x-1 && s.getType() != 1)
+				ret.add(b.get(x*s.getRow()+s.getCol()+1));
 		}catch(Exception e){
 
 		}
-		for(int i = 0; i < ret.size();i++)
-			if(ret.get(i).getType() == ret.get(i).TYPE_WALL)
-				ret.remove(ret.get(i));
 		return ret;
 	}
 	Square getStart(){
