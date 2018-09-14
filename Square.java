@@ -1,6 +1,6 @@
 public class Square{
 	public static final int TYPE_EMPTY = 0, TYPE_WALL = 1,TYPE_START = 2,TYPE_EMD = 3;
-	public static final char WORK_LIST = "o" , ALREADY_EXPLORED = ".", EXIT = "x";
+	public static final char WORK_LIST = 'o' , ALREADY_EXPLORED = '.', EXIT = 'x';
 	private int row;
 	private int col;
 	private int type;
@@ -29,7 +29,8 @@ public class Square{
 				return "_";
 		}
 	}
-	boolean equals(Object o){
+
+	public boolean equals(Object o){
 		return ((Square)o).row == this.row && ((Square)o).col == this.col && ((Square)o).type == this.type && ((Square)o).status == this.status;
 	}
 	public int getRow(){return row;}
