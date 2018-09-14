@@ -18,35 +18,37 @@ abstract class MazeSolver{
 		makeEmpty();
 	}
 
-	void step(){
+	boolean step(){
 		if(isEmpty()){
 			this.unsolvable = true;
-			return;
+			return true;
 		}
 		Square s = next();
 		if(s.getType() == 3){
 			this.solved = true;
-			return;
+			return true;
 		}
 		List <Square>n = m.getNeighbors(s);
 		for(Square s1 : n){
-			if(s1.getStatus() != '.')
-				add(s1);
-			s1.setStatus('o');
+			if(s1.getStatus() != '.'){
+				add(s1);	
+				s1.setStatus('o');
+			}
 		}
 		s.setStatus('.');
+		return false;
 	}
 	String getPath(){
 		if(this.solved){
 			return "Solved";
 		}
-		if(!isEmpty()){
-			return "Solving";
-		}
-		return "unsolvable";
+		if(this.unsolvable)
+			return "unsolvable";
+
+		return "solving";
 	}
 	void solve(){
-		while(!isSolved() && !unsolvable){
+		while((!isSolved() && !unsolvable)){
 			step();
 		}
 	}

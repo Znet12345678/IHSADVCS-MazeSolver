@@ -16,7 +16,8 @@ public class Square{
 			if(status != 0){
 				return "" + status;
 			}
-			return "_";
+			else
+				return "_";
 		}
 		switch(type){
 			case 1:

@@ -11,13 +11,12 @@ public class Maze{
 		try{
 			Scanner s = new Scanner(new File(filename));
 			this.x = s.nextInt();
-			s.nextLine();
 			this.y = s.nextInt();
-			s.nextLine();
-			for(int i = 0; i < y;i++)
+			for(int i = 0; i < y;i++){
 				for(int j = 0; j < x;j++){
 					b.add(new Square(i,j,s.nextInt()));
 				}
+			}
 		}catch(IOException e){
 			System.out.printf("An I/O Exception has occured when trying to read from file %s\n",filename);
 			return false;
@@ -35,7 +34,7 @@ public class Maze{
 		}catch(Exception e){
 
 		}try{
-			ret.add(b.get(x*s.getRow()+1+s.getCol()));
+			ret.add(b.get(x*(s.getRow()+1)+s.getCol()));
 		}catch(Exception e){
 
 		}try{
@@ -43,11 +42,14 @@ public class Maze{
 		}catch(Exception e){
 
 		}
+		for(int i = 0; i < ret.size();i++)
+			if(ret.get(i).getType() != ret.get(0).TYPE_EMPTY)
+				ret.remove(ret.get(i));
 		return ret;
 	}
 	Square getStart(){
 		for(Square s : b){
-			if(s.getType() == 2)
+			if(s.getType() == s.TYPE_START)
 				return s;
 		}
 		return null;
